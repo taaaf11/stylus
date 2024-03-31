@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stylus/components/social_card.dart';
 
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
+import 'package:stylus/utils.dart';
 
 Flavor flavor = catppuccin.mocha;
 
@@ -56,13 +57,32 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    List<Widget> about = [
+      Text(
+        title,
+        style: Theme.of(context).textTheme.titleLarge,
+        textAlign: TextAlign.center,
+      ),
+      Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: flavor.text, width: 3),
+          shape: BoxShape.circle,
+        ),
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(
+              'https://avatars.githubusercontent.com/u/109919009?s=120&v=4'),
+        ),
+      )
+    ];
+
     return Scaffold(
       backgroundColor: flavor.surface0,
       body: Container(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-          constraints:
-              BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 200),
+          constraints: BoxConstraints(maxWidth: screenWidth - 200),
           child: ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -74,36 +94,29 @@ class MyHomePage extends StatelessWidget {
                   SizedBox(
                     height: 50,
                   ),
-                  Row(
+                  Flex(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(title,
-                          style: Theme.of(context).textTheme.titleLarge),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: flavor.text, width: 3),
-                          shape: BoxShape.circle,
-                        ),
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              'https://avatars.githubusercontent.com/u/109919009?s=120&v=4'),
-                        ),
-                      )
-                    ],
+                    direction:
+                        getAxis(MediaQuery.of(context).size.width - 200), // row
+                    children: (getAxis(screenWidth - 200) == Axis.horizontal)
+                        ? about
+                        : about.reversed.toList(),
                   ),
                   SizedBox(height: 30),
                   GridView.count(
                     mainAxisSpacing: 30,
                     crossAxisSpacing: 50,
                     childAspectRatio: 280 / 210,
-                    crossAxisCount: 3,
+                    // crossAxisCount: 1,
+                    crossAxisCount:
+                        getCrossAxisCount(MediaQuery.of(context).size.width),
                     shrinkWrap: true,
                     children: [
                       SocialCard(
                         textIcon: '󰙯',
                         textIconStyle:
-                            TextStyle(color: flavor.base, fontSize: 50),
+                            TextStyle(color: flavor.base, fontSize: 30),
                         title: Text(
                           'Discord',
                         ),
@@ -114,7 +127,7 @@ class MyHomePage extends StatelessWidget {
                       SocialCard(
                         textIcon: '',
                         textIconStyle:
-                            TextStyle(color: flavor.base, fontSize: 50),
+                            TextStyle(color: flavor.base, fontSize: 30),
                         bgcolor: flavor.peach,
                         title: Text('Instagram'),
                         subtitle: Text('@po.cco._'),
@@ -123,7 +136,7 @@ class MyHomePage extends StatelessWidget {
                       SocialCard(
                         textIcon: '󰅴',
                         textIconStyle:
-                            TextStyle(color: flavor.base, fontSize: 50),
+                            TextStyle(color: flavor.base, fontSize: 30),
                         bgcolor: flavor.lavender,
                         title: Text('Code Space'),
                         subtitle: Text('@taaaf11'),
