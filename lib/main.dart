@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
             color: flavor.text,
           ),
           bodyLarge: TextStyle(
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: flavor.text,
           ),
           bodyMedium: TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             color: flavor.subtext1,
           ),
         ),
@@ -107,7 +107,7 @@ class MyHomePage extends StatelessWidget {
                   GridView.count(
                     mainAxisSpacing: 30,
                     crossAxisSpacing: 50,
-                    childAspectRatio: 280 / 210,
+                    childAspectRatio: 280 / 180,
                     // crossAxisCount: 1,
                     crossAxisCount:
                         getCrossAxisCount(MediaQuery.of(context).size.width),
