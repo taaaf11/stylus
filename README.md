@@ -1,3 +1,3 @@
-# mywebsite
+# stylus
 
-My personal links.
+My personal links tree.
