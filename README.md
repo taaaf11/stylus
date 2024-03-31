@@ -1,3 +1,3 @@
-# stylus
+# mywebsite
 
 My personal links.
