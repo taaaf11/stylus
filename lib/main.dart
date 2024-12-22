@@ -130,8 +130,8 @@ class MyHomePage extends StatelessWidget {
                             TextStyle(color: flavor.base, fontSize: 30),
                         bgcolor: flavor.peach,
                         title: Text('Instagram'),
-                        subtitle: Text('@po.cco._'),
-                        url: 'https://instagram.com/po.cco._',
+                        subtitle: Text('@muhammad._.altaaf'),
+                        url: 'https://instagram.com/muhammad._.altaaf',
                       ),
                       SocialCard(
                         textIcon: '󰅴',
